@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Papa Johns</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div id="head_top" class="lg:relative">
+        <div class="container">
+          <div class="flex justify-between items-center p-3">
+            <a class="lg:absolute top-[50%]" href="/index.htm"
+              ><img
+                class="w-[120px] lg:[200px] xl:w-[250px]"
+                src="../img/pj_logo.png"
+                alt="logo"
+            /></a>
+            <div
+              id="desktop_header"
+              class="w-[75%] lg:w-full flex justify-between items-center"
+            >
+              <div></div>
+              <div class="hidden lg:flex gap-5 font-bold text-[22px]">
+                <h4>Restoranlar</h4>
+                <h4>PapaBonus</h4>
+              </div>
+              <div class="hidden lg:flex items-center gap-5 py-2">
+                <div class="flex items-center">
+                  <div
+                    onclick="openLang()"
+                    class="flex items-center cursor-pointer relative"
+                  >
+                    <img class="w-[25px]" src="../img/flag_az.png" alt="lang" />
+                    <span class="font-bold text-[20px]">Azərbaycanca</span>
+                  </div>
+                  <ul
+                    id="lang_desk"
+                    class="h-0 overflow-hidden absolute top-[90%] z-9 bg-white w-[180px]"
+                  >
+                    <li class="flex gap-2 px-2 py-1">
+                      <img class="w-[25px]" src="../img/flag_en.png" alt="lang" />
+                      <span class="font-bold text-[20px]">English</span>
+                    </li>
+                    <li class="flex gap-2 px-2 py-1">
+                      <img class="w-[25px]" src="../img/flag_ru.png" alt="lang" />
+                      <span class="font-bold text-[20px]">Русский</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="font-bold text-[20px]">
+                  <h4>Giriş /Qeydiyyat</h4>
+                </div>
+                <div onclick="openBasket()">
+                  <a href="#" class="flex flex-col items-center">
+                    <i class="fa fa-shopping-basket text-[25px] relative"
+                      ><span
+                        class="basketCount absolute top-[-50%] right-[-10%] bg-red-700 text-[9px] px-[7px] py-[5px] text-white font-thin rounded-[50%]"
+                        >0</span
+                      ></i
+                    >
+                    <span class="text-[12px] font-bold"><span class="allPriceInPopup">0</span> &#8380;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center w-[100%] lg:w-max">
+              <div class="flex flex-col items-center lg:hidden">
+                <div
+                  onclick="openLang()"
+                  class="flex flex-col items-center cursor-pointer relative"
+                >
+                  <img class="w-[25px]" src="../img/flag_az.png" alt="lang" />
+                  <span class="text-[12px] font-bold">Az</span>
+                </div>
+                <ul
+                  id="lang_mob"
+                  class="h-0 overflow-hidden absolute top-[8%] z-9 bg-white"
+                >
+                  <li class="px-4 py-1">
+                    <div>
+                      <img class="w-[25px]" src="../../img/flag_en.png" alt="lang" />
+                    </div>
+                    <span>En</span>
+                  </li>
+                  <li class="px-4 py-1">
+                    <div>
+                      <img class="w-[25px]" src="../img/flag_ru.png" alt="lang" />
+                    </div>
+                    <span>Py</span>
+                  </li>
+                </ul>
+              </div>
+              <div id="login" class="lg:hidden">
+                <a href="#" class="flex flex-col items-center">
+                  <i class="fa fa-user text-[25px]"></i>
+                  <span class="text-[12px] font-bold">Giriş</span>
+                </a>
+              </div>
+              <div onclick="openBasket()" class="lg:hidden">
+                <a href="#" class="flex flex-col items-center">
+                  <i class="fa fa-shopping-basket text-[25px] relative"
+                    ><span
+                      class="basketCount absolute top-[-50%] right-[-10%] bg-red-700 text-[9px] p-[5px] text-white font-thin rounded-[50%]"
+                      >0</span
+                    ></i
+                  >
+                  <span class="text-[12px] font-bold"><span class="allPriceInPopup">0</span> &#8380;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="head_btn" class="bg-red-700">
+        <div class="container">
+          <div
+            class="flex justify-center lg:justify-between items-center p-3 text-white font-bold text-[14px] lg:text-[25px]"
+          >
+            <div class="hidden lg:block xl:w-[200px]"></div>
+            <ul id="categoryMenu"
+              class="flex overflow-scroll-x overflow-auto gap-3 p-2 font-bold text-[20px] uppercase"
+            ></ul>
+            <div class="hidden lg:block">
+              <a class="flex items-center gap-2 text-[22px]" href="#"
+                >0 bal
+                <span
+                  class="px-3 text-[20px] rounded-[50%] font-extrabold bg-green-700"
+                  >?</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="sideBar"
+        class="bg-[#00000078] fixed hidden inset-0 place-items-center cursor-pointer overflow-y-scroll"
+      >
+        <div class="w-full h-full md:w-[600px] md:h-auto bg-white p-5">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[30px] font-bold">Səbət</h3>
+            <p
+              onclick="openBasket()"
+              class="cursor-pointer flex items-center gap-1 font-bold"
+            >
+              Bağla
+              <span
+                class="fa-solid fa-xmark bg-black text-white px-[5.5px] py-[4px] rounded-[50%]"
+              ></span>
+            </p>
+          </div>
+          <p>Səbətinizdə məhsulların sayı: <span id="count">1</span></p>
+           <div id="basket" class="my-5"></div> 
+          <div class="flex flex-col gap-2  md:flex-row justify-between items-center mt-5 font-bold">
+            <button class="bg-red-700 p-2 text-white max-w-[250px] rounded-md">
+              SİFARİŞİ GÖNDƏR
+            </button>
+            <p class="sm:text-[20px]">Ümumi məbləğ: <span class="allPriceInPopup">0</span>&#8380;</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mt-5">
+      <div class="container">
+        <div class="flex justify-around items-center bg-[#f1f1f1] p-[18px]">
+          <p class="hidden lg:block font-bold text-[24px]">
+            Promo kodunuz var?
+            <span class="text-green-700">Endirimdən istifadə edin! </span>
+          </p>
+          <div class="flex gap-2 justify-center">
+            <input
+              class="border border-green-700 rounded-md p-2 w-full min-[340px]:w-[200px]"
+              type="search"
+              id="search"
+              placeholder="Promo kodu daxil edin"
+            />
+            <button
+              class="w-[60px] bg-green-700 p-2 text-white font-bold rounded-md"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+        <div>
+          <ul
+            class="bg-[#f1f1f1] font-bold text-[12px] md:text-[20px] flex gap-3 md:gap-5 p-3 mt-5"
+          >
+            <li><a href="#">Hamısı</a></li>
+            <li><a href="#">Toyuqlu</a></li>
+            <li><a href="#">Ət ilə</a></li>
+            <li><a href="#">Vegetarian</a></li>
+            <li><a href="#">Acılı</a></li>
+          </ul>
+        </div>
+        <div
+          id="cards"
+          class="flex flex-wrap gap-5 justify-center px-3 pb-[30px]"
+        ></div>
+      </div>
+      <div onclick="closePopup()" id="popupDiv"></div>
+    </main>
+
+    <footer class="bg-red-700 py-5 text-white font-bold">
+      <div
+        class="container flex justify-between gap-3 text-[12px] md:text-[18px]"
+      >
+        <p class="pl-3">© PJA 2024</p>
+        <div>
+          <ul class="flex flex-wrap gap-3 px-3">
+            <li><a href="#">Haqqımızda</a></li>
+            <li><a href="#">Sual-Cavab</a></li>
+            <li><a href="#">Karyera</a></li>
+            <li><a href="#">Xəmir</a></li>
+            <li><a href="#">Papa Talk - Şərtlər və Qaydalar</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/header.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/category.js"></script>
+  </body>
+</html>
+
