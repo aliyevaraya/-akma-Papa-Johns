@@ -23,11 +23,13 @@ let basketArr = JSON.parse(localStorage.getItem('basket')) || [];
 
 function addToBasket(id, img, title, price) {
   const countDiv = document.getElementById("countDiv");
+  const select = document.querySelector("select");
+  changeType()
   const obj = {
     id,
     img,
     title,
-    price,
+    price: select.value,
     count: +countDiv.innerHTML,
     total: price * countDiv.innerHTML
   };
@@ -43,24 +45,21 @@ function addToBasket(id, img, title, price) {
   document.getElementById("qiymetntc").innerHTML = obj.price;
   handleBasket();
   getAllPrice()
-
-  const parse = JSON.stringify(basketArr)
-  localStorage.setItem("basket", parse)
+  
+  localStorage.setItem("basket", JSON.stringify(basketArr))
+  console.log(price);
+  console.log(select.value);
+  
 }
 
 function getAllPrice() {
-  const parse = JSON.stringify(basketArr)
-  localStorage.setItem("basket", parse)
-
   const totalPrice = document.querySelectorAll(".totalPrice");
-  let all = basketArr.reduce((sum, product) => sum + +product.price, 0);
-  totalPrice.forEach((item) => item.innerHTML = all);
+  totalPrice.forEach((item) => item.innerHTML = basketArr.reduce((sum, product) => sum + +product.total, 0));
 
   const basketCount = document.querySelectorAll(".basketCount");
   basketCount.forEach((item) => (item.innerHTML = basketArr.reduce((sum, item) => sum + item.count, 0)));
-
-
 }
+getAllPrice()
 
 const basket = document.getElementById("basket");
 
@@ -84,8 +83,8 @@ function handleBasket() {
             <button onclick="editCount(1, '${item.id}')" class="px-2 sm:px-3 pb-1 bg-green-600 font-black">+</button>
           </div>
           <div class="font-bold">
-            <span id="priceInBasket" class="text-[22px]">${item.total} &#8380;</span>
-            <span class="fa-solid fa-xmark text-gray-600 ml-2"></span>
+            <span class="text-[22px]">${item.total} &#8380;</span>
+            <span onclick="deleteProduct('${item.id}')" class="fa-solid fa-xmark text-gray-600 ml-2"></span>
           </div>
         </div>
       </div>
@@ -98,8 +97,19 @@ function editCount(deyer, id) {
   const say = +element.count + deyer;
   if (say >= 1) element.count = say;
   element.total = element.count * element.price;
+  localStorage.setItem("basket", JSON.stringify(basketArr))
   handleBasket();
   getAllPrice()
-  const parse = JSON.stringify(basketArr)
-  localStorage.setItem("basket", parse)
+}
+
+function deleteProduct(id) {
+  basketArr.splice(id, 1)
+  localStorage.setItem("basket", JSON.stringify(basketArr))
+  handleBasket();
+  getAllPrice()
+}
+
+window.onload = function () {
+  handleBasket();
+  getAllPrice();
 }
